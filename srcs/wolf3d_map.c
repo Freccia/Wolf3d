@@ -6,7 +6,7 @@
 /*   By: lfabbro <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/13 19:08:18 by lfabbro           #+#    #+#             */
-/*   Updated: 2016/11/13 19:55:56 by lfabbro          ###   ########.fr       */
+/*   Updated: 2016/11/14 16:09:04 by lfabbro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,14 @@ void		wolf3d_set_map(int (*map)[24][24], char *file)
 		x = -1;
 		while (++x < MAP_X)
 		{
+			if (line[x] == '\0')
+				ft_error("Wrong map.");
 			(*map)[y][x] = line[x] - '0';
 		}
 		free(line);
 	}
-	free(line);
+	if (y != MAP_Y)
+		ft_error("Wrong map.");
 	if (close(fd) < 0)
 		ft_error("Failed closing map.");
 }
